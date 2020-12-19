@@ -20,7 +20,7 @@ def call(){
 						break 
 					}
 
-					ejecucion+.callBuildandTest()
+					gradle.callBuildandTest()
 					
 					stage('sonar') {
                         def scannerHome = tool 'sonar-scanner';
@@ -29,7 +29,7 @@ def call(){
                          }                     
                     }
 					
-					ejecucion+.callRun()
+					gradle.callRun()
 
 					stage('rest'){
 						 sleep 10
