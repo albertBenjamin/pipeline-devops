@@ -7,8 +7,8 @@ def call(){
         	steps{
 	            script{
 	            	
-	            	filepathString =''
-	            	ejecucion = ''
+	            	def filepathString =''
+	            	def ejecucion = ''
 	            		switch(params.buildtool){
 						case'gradle':
 						 ejecucion = 'gradle'
