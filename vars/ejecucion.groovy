@@ -6,15 +6,15 @@ def call(){
         stage('Pipeline') {
         	steps{
 	            script{
-	            	def ejecucion 
+	            	ejecucion = ''
 	            	filepathString =''
 	            		switch(params.buildtool){
 						case'gradle':
-						 ejecucion = load 'gradle.groovy'
+						 ejecucion = 'gradle'
 						 filepathString = 'build/libs/DevOpsUsach2020-0.0.1.jar'
 						break
 						default:
-						 ejecucion = load 'maven.groovy'
+						 ejecucion = 'maven'
 						 filepathString = 'build/DevOpsUsach2020-0.0.1.jar'
 						break 
 					}
