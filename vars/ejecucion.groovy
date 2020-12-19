@@ -6,8 +6,9 @@ def call(){
         stage('Pipeline') {
         	steps{
 	            script{
-	            	ejecucion = ''
+	            	
 	            	filepathString =''
+	            	ejecucion = ''
 	            		switch(params.buildtool){
 						case'gradle':
 						 ejecucion = 'gradle'
