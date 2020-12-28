@@ -6,7 +6,7 @@ def call(){
         stage('Pipeline') {
         	steps{
 	            script{
-			def ejecucion = load(params.buildtool+'.groovy')
+			def ejecucion = evaluate readFile(params.buildtool)
 	            	filepathString =''
 	            		switch(params.buildtool){
 						case'gradle':
