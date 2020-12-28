@@ -6,9 +6,8 @@ def call(){
         stage('Pipeline') {
         	steps{
 	            script{
-	            	
-	            	def filepathString =''
 	            	def ejecucion
+	            	filepathString =''
 	            		switch(params.buildtool){
 						case'gradle':
 						 ejecucion = load  'gradle.groovy'
