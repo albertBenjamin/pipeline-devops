@@ -11,17 +11,19 @@ def call(){
 	            	def ejecucion = ''
 	            		switch(params.buildtool){
 						case'gradle':
-						 ejecucion = 'gradle'
+						 ejecucion = load  'gradle.groovy'
 						 filepathString = 'build/libs/DevOpsUsach2020-0.0.1.jar'
+						 gradle.callBuildandTest()
 						break
 						default:
-						 ejecucion = 'maven'
+						 ejecucion = load 'maven.groovy'
 						 filepathString = 'build/DevOpsUsach2020-0.0.1.jar'
+						
 						break 
 					}
 
-					gradle.callBuildandTest()
-					
+					ejecucion.callBuildandTest()
+
 					stage('sonar') {
                         def scannerHome = tool 'sonar-scanner';
                         withSonarQubeEnv('sonar') {
