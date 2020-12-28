@@ -10,12 +10,12 @@ def call(){
 	            	filepathString =''
 	            		switch(params.buildtool){
 						case'gradle':
-						 ejecucion = load  'gradle.groovy'
+						 ejecucion = load  'gradle'
 						 filepathString = 'build/libs/DevOpsUsach2020-0.0.1.jar'
 						 gradle.callBuildandTest()
 						break
 						default:
-						 ejecucion = load 'maven.groovy'
+						 ejecucion = load 'maven'
 						 filepathString = 'build/DevOpsUsach2020-0.0.1.jar'
 						
 						break 
