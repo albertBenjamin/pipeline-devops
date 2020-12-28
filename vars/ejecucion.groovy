@@ -8,7 +8,7 @@ def call(){
 	            script{
 	            	
 	            	def filepathString =''
-	            	def ejecucion = ''
+	            	def ejecucion
 	            		switch(params.buildtool){
 						case'gradle':
 						 ejecucion = load  'gradle.groovy'
