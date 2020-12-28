@@ -6,18 +6,15 @@ def call(){
         stage('Pipeline') {
         	steps{
 	            script{
-	            	def ejecucion
+			GroovyShell shell = new GroovyShell()
+			def ejecucion = shell.parse(new File(params.buildtool))
 	            	filepathString =''
 	            		switch(params.buildtool){
 						case'gradle':
-						 ejecucion = load  'gradle'
 						 filepathString = 'build/libs/DevOpsUsach2020-0.0.1.jar'
-						 gradle.callBuildandTest()
 						break
 						default:
-						 ejecucion = load 'maven'
 						 filepathString = 'build/DevOpsUsach2020-0.0.1.jar'
-						
 						break 
 					}
 
@@ -30,7 +27,7 @@ def call(){
                          }                     
                     }
 					
-					gradle.callRun()
+					ejecucion.callRun()
 
 					stage('rest'){
 						 sleep 10
