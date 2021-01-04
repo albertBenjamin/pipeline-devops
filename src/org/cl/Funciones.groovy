@@ -1,7 +1,9 @@
 package org.cl
 
-def validarstages(String[] param){
-	return true;
+def validarStages(String[] param){
+	def listStages= ['Compile','Test','Jar','sonar','Run','nexus']
+    listStages[param.size + 1 .. 5]
+	return assert listStages as Set == param as Set;
 }
 
 def validarOrderStages(){
