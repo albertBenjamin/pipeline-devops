@@ -6,21 +6,21 @@ def call(String selectStage = '') {
 		stage('compile') {
 			println 'Compile Maven';
 			env.stage = "${env.STAGE_NAME}";
-			sh 'mvn clean compile -e';
+			bat 'mvn clean compile -e';
 		}
 		break;
 
 		case 'unit':
 		stage('unit') {
 			env.stage = "${env.STAGE_NAME}";
-			sh 'mvn clean test -e';
+			bat 'mvn clean test -e';
 		}
 		break;
 
 		case 'jar':
 		stage('jar') {
 			env.stage = "${env.STAGE_NAME}";
-			sh 'mvn clean package -e';
+			bat 'mvn clean package -e';
 		}
 		break;
 
