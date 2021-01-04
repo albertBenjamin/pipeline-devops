@@ -34,7 +34,7 @@ def call(){
 
 					def funciones   = new Funciones()
 
-					if(funciones.validarStages(funciones)){
+					if(funciones.validarStages(stagesList)){
 						println 'Funcionó'
 					}
 
