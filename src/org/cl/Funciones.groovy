@@ -1,8 +1,12 @@
 package org.cl
 
 def validarStages(String[] param){
+	println 'lista  ' + param;
 	def listStages= ['compile','test','jar','sonar','run','nexus']
-    listStages[param.size + 1 .. 5]
+	def corte = param.size + 1
+	println 'corte ' + corte;
+    listStages[ corte .. 5]
+    println 'lista ' + branch;
 	return listStages as Set == param as Set
 }
 
