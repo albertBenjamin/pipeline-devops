@@ -36,6 +36,8 @@ def call(){
 
 					if(funciones.validarStages(stagesList)){
 						println 'Funcionó'
+					}else{
+						println 'NO Funcionó'
 					}
 
 	            }
