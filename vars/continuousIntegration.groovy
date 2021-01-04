@@ -13,10 +13,10 @@ switch(run) {
         || stagesList.contains('run')
         || stagesList.contains('test')
         || stagesList.contains('nexus')) {
-        println 'Stages ingresadas válidas';
+        println 'Stages ingresadas válidas' + ' '+ stagesList.join(',');
         // Ejecuta stages ingresadas.
         for (String values : stagesList) {
-            println 'Ejecutando etapa ' + values;
+            println 'Ejecutando etapa ' + values ;
             gradle values;
         }
 
