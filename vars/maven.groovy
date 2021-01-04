@@ -44,9 +44,11 @@ def call(String selectStage = '') {
 							mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
 
 						}
-			}
+			
 		break
 
 	}
+
 }
+
 return this;
