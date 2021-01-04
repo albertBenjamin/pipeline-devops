@@ -18,7 +18,7 @@ def call(String param1, String param2){
                                 println 'String 1: ' + param1
                                 println 'String 2: ' + param2
 
-                                gradle.call()
+                                //gradle.call()
                             }
 
                             stage('Union'){
