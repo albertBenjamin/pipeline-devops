@@ -1,6 +1,6 @@
 import org.cl.*
 
-def call(){
+def call(String param1, String param2){
 	pipeline {
     agent any
 
