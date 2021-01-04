@@ -17,18 +17,18 @@ switch(run) {
         // Ejecuta stages ingresadas.
         for (String values : stagesList) {
             println 'Ejecutando etapa ' + values;
-            gradleScript values;
+            gradle values;
         }
 
     // Validación de input de stages vacío o con espacios en blanco, para ejecutar todas las stages.
     } else if (!stagesList || stagesListEmpty) {
         println 'Stages en blanco';
         println 'Selección por defecto, ejecutando todas las etapas Gradle';
-        gradleScript 'build';
-        gradleScript 'sonar';
-        gradleScript 'run';
-        gradleScript 'test';
-        gradleScript 'nexus';
+        gradle 'build';
+        gradle 'sonar';
+        gradle 'run';
+        gradle 'test';
+        gradle 'nexus';
 // Envía error a la consola en caso de no cumplir las condiciones.
 // Se almacena la información en env.stage para enviar a mensaje Slack.
     } else {
@@ -48,17 +48,17 @@ switch(run) {
     // Ejecuta stages ingresadas.
     for (String values : stagesList) {
       println 'Ejecutando etapa ' + values;
-      mavenScript values;
+      maven values;
     }
 // Validación de input de stages vacío o con espacios en blanco, para ejecutar todas las stages.
   } else if (!stagesList || stagesListEmpty) {
       println 'Sin información ingresada.';
       println 'Selección por defecto, ejecutando todas las etapas Maven';
-      mavenScript 'compile';
-      mavenScript 'unit';
-      mavenScript 'jar';
-      mavenScript 'sonar';
-      mavenScript 'nexus';
+      maven 'compile';
+      maven 'unit';
+      maven 'jar';
+      maven 'sonar';
+      maven 'nexus';
 // Envía error a la consola en caso de no cumplir las condiciones.
 // Se almacena la información en env.stage para enviar mensaje a Slack.
   } else {
