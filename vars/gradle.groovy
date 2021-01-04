@@ -3,21 +3,19 @@ def call(String selectStage = '') {
 	switch (selectStage) {
 
 		case 'build':
-		stage('Build') {
+		stage('build') {
 			env.stage = "${env.STAGE_NAME}";
 			bat './gradlew clean build';
-			sleep 20
 		}
 		break;
 
 		case 'sonar':
-		stage('Sonar') {
+		stage('sonar') {
 			env.stage = "${env.STAGE_NAME}";
 			def scannerHome = tool 'sonar-scanner';
 		        withSonarQubeEnv('sonar') {
 		            bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build" 
-		         }
-		     sleep 20
+		         } 
 		}
 		break;
 
