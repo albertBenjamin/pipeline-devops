@@ -3,8 +3,7 @@ package org.cl
 def validarStages(String[] param){
 	def listStages= ['Compile','Test','Jar','sonar','Run','nexus']
     listStages[param.size + 1 .. 5]
-	def myBooleanVariable = assert listStages as Set == param as Set
-	return myBooleanVariable
+	return listStages as Set == param as Set
 }
 
 def validarOrderStages(){
