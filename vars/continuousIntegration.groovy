@@ -17,7 +17,7 @@ switch(run) {
         // Ejecuta stages ingresadas.
         for (String values : stagesList) {
             println 'Ejecutando etapa ' + values ;
-            gradle values;
+            gradle values.trim();
         }
 
     // Validación de input de stages vacío o con espacios en blanco, para ejecutar todas las stages.
@@ -48,7 +48,7 @@ switch(run) {
     // Ejecuta stages ingresadas.
     for (String values : stagesList) {
       println 'Ejecutando etapa ' + values;
-      maven values;
+      maven value.trim();
     }
 // Validación de input de stages vacío o con espacios en blanco, para ejecutar todas las stages.
   } else if (!stagesList || stagesListEmpty) {
