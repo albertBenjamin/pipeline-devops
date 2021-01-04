@@ -2,7 +2,9 @@ def call(String run = '') {
 
 // Transforma lista de stages ingresadas (env.stagesString) en array.
 String[] stagesList = env.stagesString.split(';');
-stagesList*.trim();
+ for (String values : stagesList) {
+            values = values.trim();
+        }
 // True si stageList contiene strings vacíos.
 stagesListEmpty = stagesList.any {x -> x == ''};
 
