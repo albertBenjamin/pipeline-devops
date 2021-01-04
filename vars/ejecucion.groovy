@@ -9,8 +9,9 @@ def call(){
         	steps{
 	            script{
 			
-
- 					 def funciones   = new Funciones()
+					try{
+ 					
+ 						def funciones   = new Funciones()
 
                             stage('Inicio'){
                                 println 'Inicio'
