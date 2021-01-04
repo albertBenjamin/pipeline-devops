@@ -31,10 +31,10 @@ def call(){
 					env.stagesString = params.Stage.toLowerCase();
 					
 					if (tool == 'Gradle') {
-						Funciones 'runGradle';
+						continuousIntegration 'runGradle';
 					}
 					else if (tool == 'Maven') {
-						Funciones 'runMaven';
+						continuousIntegration 'runMaven';
 					}
 
 	            }
