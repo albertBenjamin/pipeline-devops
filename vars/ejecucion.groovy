@@ -1,3 +1,5 @@
+import org.cl.*
+
 def call(){
 	pipeline {
     agent any
@@ -7,7 +9,29 @@ def call(){
         	steps{
 	            script{
 			
-	            	filepathString =''
+
+ 					 def funciones   = new Funciones()
+
+                            stage('Inicio'){
+                                println 'Inicio'
+                                println 'String 1: ' + param1
+                                println 'String 2: ' + param2
+
+                                gradle.call()
+                            }
+
+                            stage('Union'){
+                                println 'Union de 2 Strings: ' + funciones.unirDosStrings(param1, param2)          
+                            }
+
+                            stage('MostrarNombre'){
+                                println 'Nombre obtenido desde Json: ' + funciones.mostrarNombre()
+                            }
+
+                        } catch(Exception e) {
+                            error ('Ha ocurrido el siguiente error: ' + e)
+                        }
+/*	            	filepathString =''
 	            		switch(params.buildtool){
 						case'gradle':
 						 filepathString = 'build/libs/DevOpsUsach2020-0.0.1.jar'
@@ -15,8 +39,7 @@ def call(){
 						 sonar.callSonar()
 						 gradle.callRun()
 						break
-						default:
-						 filepathString = 'build/DevOpsUsach2020-0.0.1.jar'
+					 filepathString = 'build/DevOpsUsach2020-0.0.1.jar'
 						 maven.callBuildandTest()
 						 sonar.callSonar()
 						 maven.callRun()
@@ -26,7 +49,7 @@ def call(){
 						 sleep 10
 						 bat 'curl http://localhost:8083/rest/mscovid/estadoMundial'
 					}
-					nexus.callNexus(filepathString)
+					nexus.callNexus(filepathString)*/
 
 	            }
 	        }
