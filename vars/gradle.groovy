@@ -6,6 +6,7 @@ def call(String selectStage = '') {
 		stage('Build') {
 			env.stage = "${env.STAGE_NAME}";
 			bat './gradlew clean build';
+			sleep 20
 		}
 		break;
 
@@ -15,7 +16,8 @@ def call(String selectStage = '') {
 			def scannerHome = tool 'sonar-scanner';
 		        withSonarQubeEnv('sonar') {
 		            bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build" 
-		         } 
+		         }
+		     sleep 20
 		}
 		break;
 
