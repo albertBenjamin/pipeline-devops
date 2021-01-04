@@ -1,29 +1,52 @@
-/*
-	forma de invocación de método call:
-	def ejecucion = load 'script.groovy'
-	ejecucion.call()
-*/
+def call(String selectStage = '') {
 
-def callBuildandTest(){
-  
+	switch (selectStage) {
 
-        stage('Compile Code') {
-			bat './mvnw.cmd clean compile -e'         
-        }
-		stage('Test Code') {
-            
-			bat './mvnw.cmd clean test -e'  
-        }
-		stage('Jar Code') {
-					bat './mvnw.cmd clean package -e'       
-    	}
+		case 'compile':
+		stage('compile') {
+			println 'Compile Maven';
+			env.stage = "${env.STAGE_NAME}";
+			sh 'mvn clean compile -e';
+		}
+		break;
 
+		case 'unit':
+		stage('unit') {
+			env.stage = "${env.STAGE_NAME}";
+			sh 'mvn clean test -e';
+		}
+		break;
+
+		case 'jar':
+		stage('jar') {
+			env.stage = "${env.STAGE_NAME}";
+			sh 'mvn clean package -e';
+		}
+		break
+
+		case 'sonar':
+		stage('sonar') {
+			env.stage = "${env.STAGE_NAME}";
+			script {
+			def scannerHome = tool 'sonar-scanner';
+		        withSonarQubeEnv('sonar') {
+		            bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build" 
+		         } 
+			}
+		}
+		break
+
+		case 'nexus':
+	stage('nexus'){
+							nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', 
+							packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', 
+							filePath: 'build/DevOpsUsach2020-0.0.1.jar']], 
+							mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
+
+						}
+			}
+		break
+
+	}
 }
-
-def callRun(){
-  stage('Run Jar') {
-				bat 'start mvnw.cmd spring-boot:run'
-        }
-}
-
 return this;

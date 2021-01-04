@@ -15,7 +15,7 @@ def call(){
 				description:
 				'''Selección de stage.
 				Opciones para Gradle: Build; Sonar; Run; Test; Nexus. 
-				Opciones para Maven: Compile; Unit; Jar; Sonar; Test.''')
+				Opciones para Maven: Compile; Unit; Jar; Sonar; Nexus.''')
 							}
 
     stages {
@@ -29,15 +29,12 @@ def call(){
 					env.stage = '';
 					// Asigna las etapas seleccionadas a variable global env.stagesString.
 					env.stagesString = params.Stage.toLowerCase();
-					// Transforma stagesString en array.
-					String[] stagesList = env.stagesString.split(';');
-
-					def funciones   = new Funciones()
-
-					if(funciones.validarStages(stagesList)){
-						println 'Funcionó'
-					}else{
-						println 'NO Funcionó'
+					
+					if (tool == 'Gradle') {
+						Funciones 'runGradle';
+					}
+					else if (tool == 'Maven') {
+						Funciones 'runMaven';
 					}
 
 	            }
@@ -45,10 +42,16 @@ def call(){
         }
 
     }
+    post {
+        success{
+			slackSend channel: 'U01DD0BR7H8', color: 'good', message: 'Ejecución exitosa :'+['Albert Muñoz ']+[env.JOB_NAME]+[params.buildtool], teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack'
+        }
+        failure{
+            slackSend channel: 'U01DD0BR7H8', color: 'danger', message: 'Ejecución fallida :'+['Albert Muñoz ']+[env.JOB_NAME]+[params.buildtool]+' en stage' + [env.STAGE_NAME], teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'slack'
+        }
+    }
 
 }
-
-
 
 }
 
