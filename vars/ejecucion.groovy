@@ -28,7 +28,7 @@ def call(){
 					// Inicializa env.stage global para capturar nombre de etapa.
 					env.stage = '';
 					// Asigna las etapas seleccionadas a variable global env.stagesString.
-					env.stagesString = params.Stage.toLowerCase();
+					env.stagesString = params.Stage.toLowerCase().trim();
 					
 					if (tool == 'Gradle') {
 						continuousIntegration 'runGradle';
