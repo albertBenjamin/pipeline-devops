@@ -30,7 +30,8 @@ def call(){
 					// Asigna las etapas seleccionadas a variable global env.stagesString.
 					env.stagesString = params.Stage.toLowerCase();
 					
-					env.stagesString = env.stagesString.trim();
+					env.stagesString = env.stagesString.replaceAll(~/\s/,"");
+					
 					if (tool == 'Gradle') {
 						continuousIntegration 'runGradle';
 					}
