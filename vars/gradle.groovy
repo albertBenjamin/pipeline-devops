@@ -3,6 +3,7 @@ import pipeline.*
 def call(String chosenStages, String pipelineType) {
 
 	figlet 'gradle'
+	figlet 'CI' ==~ pipelineType ? 'Integracion' : 'Despliegue'
 
 	def pipelineStages = 'CI' ==~ pipelineType ? ['buildAndTest','sonar','runJar','rest','nexusCICD'] : ['downloadNexus','runDownloadJar','rest','nexusCICD']
 	env.PATHJAR = 'CI' ==~ pipelineType ? 'build/libs/' : ''; 
