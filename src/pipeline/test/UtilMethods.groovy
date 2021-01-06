@@ -29,8 +29,9 @@ def pipelineType(branch_name){
 
     if(branch_name ==~ /develop/ || branch_name ==~ /feature-.*/){
         pipeline_type = 'CI'
-    } else if(branch_name ==~ /^release-v\d{1,}-\d{1,}-\d{1,}$/){
+    } else {
         pipeline_type = 'CD'
+        env.BRANCH_NAME = 'release'
     }
 
     println "Pipeline Type [${pipeline_type}]"
