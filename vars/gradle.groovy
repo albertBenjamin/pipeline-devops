@@ -45,7 +45,7 @@ def rest(){
 def nexusCICD(){
 	nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', 
 							packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', 
-							filePath: pathJar]], 
+							filePath: pathJar+'DevOpsUsach2020-0.0.1.jar']], 
 							mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
 }
 
