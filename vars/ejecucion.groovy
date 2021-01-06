@@ -16,7 +16,7 @@ def call(){
             steps{
                 script{
                     env.PIPELINE_TYPE = ''
-
+                    env.PATHJAR= ''
                     def utils =  new test.UtilMethods()
                     env.PIPELINE_TYPE = utils.pipelineType(env.BRANCH_NAME)
 

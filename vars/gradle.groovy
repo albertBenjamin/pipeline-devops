@@ -5,7 +5,7 @@ def call(String chosenStages, String pipelineType) {
 	figlet 'gradle'
 
 	def pipelineStages = 'CI' ==~ pipelineType ? ['buildAndTest','sonar','runJar','rest','nexusCICD'] : ['downloadNexus','runDownloadJar','rest','nexusCICD']
-	def pathJar = 'CI' ==~ pipelineType ? 'build/libs/' : ''; 
+	env.PATHJAR = 'CI' ==~ pipelineType ? 'build/libs/' : ''; 
 	
 	def utils =  new test.UtilMethods()
 	def stages = utils.getValidatedStages(chosenStages, pipelineStages)
@@ -45,7 +45,7 @@ def rest(){
 def nexusCICD(){
 	nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', 
 							packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', 
-							filePath: pathJar+'DevOpsUsach2020-0.0.1.jar']], 
+							filePath: env.PATHJAR+'DevOpsUsach2020-0.0.1.jar']], 
 							mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
 }
 
