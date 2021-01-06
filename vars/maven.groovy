@@ -3,8 +3,6 @@ import pipeline.*
 def call(String choseStages, String pipelineType) {
 
 	figlet 'maven'
-	figlet 'CI' ==~ pipelineType ? 'Integracion' : 'Despliegue'
-
 	def pipelineStages = 'CI' ==~ pipelineType ? ['compile','test','jar','runJar','sonar','nexus','hola'] : ['downloadNexus','runDownloadJar','rest','nexusCICD']
 
 	def utils = new test.UtilMethods()

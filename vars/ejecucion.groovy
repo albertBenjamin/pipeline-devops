@@ -17,8 +17,11 @@ def call(){
                 script{
                     env.PIPELINE_TYPE = ''
                     env.PATHJAR= ''
+                    env.VERSIONCICD= ''
+                    
                     def utils =  new test.UtilMethods()
                     env.PIPELINE_TYPE = utils.pipelineType(env.BRANCH_NAME)
+                    utils.setVaribales(env.PIPELINE_TYPE)
 
                     println 'Herramienta de ejecución seleccionada: '+ params.buildtool
 

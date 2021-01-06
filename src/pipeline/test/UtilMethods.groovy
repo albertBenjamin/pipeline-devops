@@ -38,4 +38,10 @@ def pipelineType(branch_name){
     return pipeline_type
 }
 
+def setVaribales(String pipelineType){
+	figlet 'CI' ==~ pipelineType ? 'Integracion' : 'Despliegue'
+	env.PATHJAR = 'CI' ==~ pipelineType ? 'build/libs/' : ''; 
+	env.VERSIONCICD= 'CI' ==~ pipelineType ? '0.0.1' : '1.0.0'
+}
+
 return this
