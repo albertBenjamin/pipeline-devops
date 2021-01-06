@@ -20,6 +20,7 @@ def call(){
                     env.VERSIONCICD= ''
 
                     def utils =  new test.UtilMethods()
+                    println env.GIT_BRANCH
                     env.GIT_BRANCH = env.GIT_BRANCH.split('/')[1]
                     env.PIPELINE_TYPE = utils.pipelineType(env.GIT_BRANCH )
                     utils.setVaribales(env.PIPELINE_TYPE)
