@@ -10,9 +10,6 @@ def call(){
 				choices: ['Gradle', 'Maven'],
 				description: 'Selección herramienta de construcción')
 			string(
-
-				bat 'set'
-
 				name: 'Stage',
 				defaultValue: '',
 				description:
@@ -26,6 +23,7 @@ def call(){
         	steps{
 	            script{
 					
+			    		bat 'set'
 					// Captura herramienta de construcción seleccionada.
 					tool = params.Herramienta;
 					// Inicializa env.stage global para capturar nombre de etapa.
