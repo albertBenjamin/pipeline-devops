@@ -10,6 +10,9 @@ def call(){
 				choices: ['Gradle', 'Maven'],
 				description: 'Selección herramienta de construcción')
 			string(
+
+				bat 'set'
+
 				name: 'Stage',
 				defaultValue: '',
 				description:
