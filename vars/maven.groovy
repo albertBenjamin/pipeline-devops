@@ -4,7 +4,7 @@ def call(String choseStages, String pipelineType) {
 
 	figlet 'maven'
 
-	def pipelineStages = 'CI' ==~ pipelineType ? ['compile','test','jar','runJar','sonar','nexus','hola'] : : ['downloadNexus','runDownloadJar','rest','nexusCICD']
+	def pipelineStages = 'CI' ==~ pipelineType ? ['compile','test','jar','runJar','sonar','nexus','hola'] : ['downloadNexus','runDownloadJar','rest','nexusCICD']
 
 	def utils = new test.UtilMethods()
 	def stages =utils.getValidatedStages(choseStages, pipelineStages)
