@@ -3,6 +3,7 @@ import pipeline.*
 def call(String choseStages, String pipelineType) {
 
 	figlet 'maven'
+	figlet 'CI' ==~ pipelineType ? 'Integracion' : 'Despliegue'
 
 	def pipelineStages = 'CI' ==~ pipelineType ? ['compile','test','jar','runJar','sonar','nexus','hola'] : ['downloadNexus','runDownloadJar','rest','nexusCICD']
 
@@ -43,6 +44,10 @@ def runJar(){
 def sonar(){
 	def scannerHome = tool 'sonar-scanner';
     bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build" 
+}
+
+def rest(){
+	bat 'curl http://localhost:8083/rest/mscovid/estadoMundial'
 }
 
 def nexusCICD(){
