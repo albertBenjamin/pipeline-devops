@@ -26,7 +26,7 @@ def call(){
                     env.PIPELINE_TYPE = utils.pipelineType(env.GIT_BRANCH )
                     utils.setVaribales(env.PIPELINE_TYPE)
 
-                    println 'Herramienta de ejecución seleccionada: '+ params.buildtool + ' '+ env.GIT_BRANCH
+                    println 'Herramienta de ejecución seleccionada: '+ params.buildtool + ' '+ env.GIT_BRANCH +' '+ values.size()
 
                     if(params.buildtool == 'gradle'){
                             gradle "${params.stages}" , env.PIPELINE_TYPE
