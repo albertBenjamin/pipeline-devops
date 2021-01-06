@@ -21,7 +21,7 @@ def call(){
 
                     def utils =  new test.UtilMethods()
                     println env.GIT_BRANCH
-                    env.GIT_BRANCH = env.GIT_BRANCH.split('/')[1]
+                    env.GIT_BRANCH = env.GIT_BRANCH.split('/').size > 1 ? env.GIT_BRANCH.split('/')[1] : env.GIT_BRANCH.split('/')[0]
                     env.PIPELINE_TYPE = utils.pipelineType(env.GIT_BRANCH )
                     utils.setVaribales(env.PIPELINE_TYPE)
 
