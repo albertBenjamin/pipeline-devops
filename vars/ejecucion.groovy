@@ -1,4 +1,4 @@
-import org.cl.*
+import pipeline.*
 
 def call(){
 
@@ -15,12 +15,17 @@ def call(){
         stage('Pipeline') {
             steps{
                 script{
+                    env.PIPELINE_TYPE = ''
+
+                    def utils =  new test.UtilMethods()
+                    env.PIPELINE_TYPE = utils.pipelineType(env.BRANCH_NAME)
+
                     println 'Herramienta de ejecución seleccionada: '+ params.buildtool
 
                     if(params.buildtool == 'gradle'){
-                            gradle "${params.stages}"
+                            gradle "${params.stages}" , env.PIPELINE_TYPE
                         }else{
-                            maven "${params.stages}"
+                            maven "${params.stages}" , env.PIPELINE_TYPE
                         }
                     }
                 }

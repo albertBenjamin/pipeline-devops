@@ -24,4 +24,18 @@ def hola(){
 	println 'hola'
 }
 
+def pipelineType(branch_name){
+    def pipeline_type = ''
+
+    if(branch_name ==~ /develop/ || branch_name ==~ /feature-.*/){
+        pipeline_type = 'CI'
+    } else if(branch_name ==~ /^release-v\d{1,}-\d{1,}-\d{1,}$/){
+        pipeline_type = 'CD'
+    }
+
+    println "Pipeline Type [${pipeline_type}]"
+
+    return pipeline_type
+}
+
 return this
