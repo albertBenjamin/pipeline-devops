@@ -18,12 +18,12 @@ def call(){
                     env.PIPELINE_TYPE = ''
                     env.PATHJAR= ''
                     env.VERSIONCICD= ''
-                    
+
                     def utils =  new test.UtilMethods()
                     env.PIPELINE_TYPE = utils.pipelineType(env.BRANCH_NAME)
                     utils.setVaribales(env.PIPELINE_TYPE)
 
-                    println 'Herramienta de ejecución seleccionada: '+ params.buildtool
+                    println 'Herramienta de ejecución seleccionada: '+ params.buildtool +env.BRANCH_NAME
 
                     if(params.buildtool == 'gradle'){
                             gradle "${params.stages}" , env.PIPELINE_TYPE
